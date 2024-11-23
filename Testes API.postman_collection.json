@@ -1,0 +1,698 @@
+{
+	"info": {
+		"_postman_id": "7ce32c68-28ea-4d6a-935f-7d1d580f81e5",
+		"name": "Testes API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29887744"
+	},
+	"item": [
+		{
+			"name": "Autenticacao",
+			"item": [
+				{
+					"name": "Cenario- auth sem credenciais",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodauth}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodauth}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario- auth com credenciais validas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodauth}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodauth}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario- auth com credenciais invalidas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"email\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodauth}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodauth}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Reservas",
+			"item": [
+				{
+					"name": "Cenario - Consultar_Todas_Reservas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario- Cadastrar_Reserva",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"Bruno\",\r\n    \"lastname\" : \"Alves\",\r\n    \"totalprice\" : 215,\r\n    \"depositpaid\" : false,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2024-11-23\",\r\n        \"checkout\" : \"2024-11-30\"\r\n    },\r\n    \"additionalneeds\" : \"Cama adicional\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario - Consultar_Reserva_Especifica",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/1838",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"1838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario-Alterar_Reserva",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"Jaqueline\",\r\n    \"lastname\" : \"Alves\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/1838",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"1838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario-Alterar_Reserva_Data_Invalida",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"Jessica\",\r\n    \"lastname\" : \"Alves\",\r\n    \"totalprice\" : 215,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2024-11-15\",\r\n        \"checkout\" : \"2024-11-31\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/1838",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"1838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario-Alterar_Reserva_Incompleto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"James\",\r\n    \"lastname\" : \"Brown\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/1838",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"1838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario-Alterar_Reserva",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"Patricia\",\r\n    \"lastname\" : \"Alves\",\r\n    \"totalprice\" : 215,\r\n    \"depositpaid\" : false,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2024-11-13\",\r\n        \"checkout\" : \"2024-11-30\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/1838",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"1838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario-Deletar_Reserva",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/18",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario-Alterar_Reserva_Inexistente",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"James\",\r\n    \"lastname\" : \"Brown\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/18",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"18"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Filtros e Buscas",
+			"item": [
+				{
+					"name": "Buscar por nome e sobrenome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}?firstname=Jane&lastname=Smith",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "Jane"
+								},
+								{
+									"key": "lastname",
+									"value": "Smith"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por nome e sobrenome inexistente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}?firstname=Tito&lastname=Alves",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "Tito"
+								},
+								{
+									"key": "lastname",
+									"value": "Alves"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por período da reserva",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}?checkin=\"2024-11-23\"&checkout=\"2024-12-15\"",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							],
+							"query": [
+								{
+									"key": "checkin",
+									"value": "\"2024-11-23\""
+								},
+								{
+									"key": "checkout",
+									"value": "\"2024-12-15\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por período da reserva inexistente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}?checkin=\"2025-11-23\"&checkout=\"2025-12-15\"",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							],
+							"query": [
+								{
+									"key": "checkin",
+									"value": "\"2025-11-23\""
+								},
+								{
+									"key": "checkout",
+									"value": "\"2025-12-15\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por período da reserva data invalida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}?checkin=\"2025-11-31\"&checkout=\"2025-12-31\"",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							],
+							"query": [
+								{
+									"key": "checkin",
+									"value": "\"2025-11-31\""
+								},
+								{
+									"key": "checkout",
+									"value": "\"2025-12-31\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por período da reserva - Data ckeckout anterior a atual",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}?checkin=\"2024-12-20\"&checkout=\"2023-01-13\"",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}"
+							],
+							"query": [
+								{
+									"key": "checkin",
+									"value": "\"2024-12-20\""
+								},
+								{
+									"key": "checkout",
+									"value": "\"2023-01-13\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cenario - Consultar_Reserva_Inexistente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{methodbooking}}/18",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{methodbooking}}",
+								"18"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"//Script para executar o auth primeiro\r",
+					"pm.sendRequest({\r",
+					"    url: pm.collectionVariables.get(\"host\") + '/auth',\r",
+					"    method: 'POST',\r",
+					"    header: {\r",
+					"        'content-type': 'application/json',\r",
+					"        'Accept': 'application/json'\r",
+					"    },\r",
+					"    body: {\r",
+					"        mode: 'raw',\r",
+					"        raw: JSON.stringify({ \r",
+					"            username: pm.collectionVariables.get(\"username\"), \r",
+					"            password: pm.collectionVariables.get(\"password\") })\r",
+					"    }\r",
+					"}, function (err, res) {\r",
+					"    pm.collectionVariables.set(\"auth\", \"token=\"+res.json().token);\r",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "restful-booker.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password123",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "methodbooking",
+			"value": "booking",
+			"type": "string"
+		},
+		{
+			"key": "methodauth",
+			"value": "auth",
+			"type": "string"
+		}
+	]
+}
